@@ -1,0 +1,52 @@
+package main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+public class GamePanel extends JPanel implements Runnable {
+
+	// SCREEN SETTINGS
+	final int originalTileSize = 16; // 16x16 Tile (Default size)
+	final int scale = 3; // will scale due to monitor resolutions varying.
+
+	final int tileSize = originalTileSize * scale; // 48x48 Tile
+	final int maxScreenCol = 16; // horizontal
+	final int maxScreenRow = 12; // vertical
+	final int screenWidth = tileSize * maxScreenCol; // 758 pixels
+	final int screenHeight = tileSize * maxScreenRow; // 576 pixels
+
+	Thread gameThread; // Keeps programming running
+
+	// CONSTRUCTOR
+	public GamePanel() {
+
+		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+		this.setBackground(Color.black);
+		this.setDoubleBuffered(true); // If set to true, all drawings from this component will be done in an
+										// off-screen painting buffer
+										// Enabling improves game's rendering performance
+
+	}
+
+	public void startGamethread() {
+		gameThread = new Thread(this); // instantiating
+		gameThread.start(); // will automatically call the run() method
+	}
+
+	@Override
+	public void run() {
+
+		// GAME LOOP (Core of game)
+		while (gameThread != null) { // as long as game thread exists it repeats the process
+				
+			
+			System.out.println("The game loop is running.."); // TESTING LOOP
+			
+			// 1 UPDATE: update information such as characters
+			// 2 DRAW: draw the screen with the updated information
+		}
+
+	}
+}

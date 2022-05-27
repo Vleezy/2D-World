@@ -1,0 +1,26 @@
+package main;
+
+import javax.swing.JFrame;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		//Creating the window
+		JFrame window = new JFrame();
+		//Allows user to close window when clicking ("x") button
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Not allowing resizing of the window
+		window.setResizable(false);
+		//Title
+		window.setTitle("2DWorld");
+		
+		
+		//Window will be displayed at the center of the screen
+		window.setLocationRelativeTo(null);
+		//To be able to see the window
+		window.setVisible(true);
+		
+	}
+
+}
