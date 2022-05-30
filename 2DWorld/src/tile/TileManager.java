@@ -58,17 +58,16 @@ public class TileManager {
 			int row = 0;
 
 			while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
-
 				String line = br.readLine(); // read line of text
 
 				while (col < gp.maxScreenCol) {
-
 					String numbers[] = line.split(" "); // splits the string around matches of the given regular
 														// expression and splits line at the space
 					int num = Integer.parseInt(numbers[col]); // use col as an index for number[] array
 
 					mapTileNum[col][row] = num; // can store the extracted number in the mapTileNum
 					col++;
+				}
 
 					if (col == gp.maxScreenCol) {
 						col = 0;
@@ -78,7 +77,6 @@ public class TileManager {
 
 				br.close(); // buffer reader closes
 
-			}
 
 		} catch (Exception e) {
 
