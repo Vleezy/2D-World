@@ -22,6 +22,7 @@ public class Main {
 		window.setLocationRelativeTo(null); // Window will be displayed at the center of the screen
 		window.setVisible(true); // To be able to see the window
 
+		gamePanel.setupGame(); // calling object method
 		gamePanel.startGamethread(); // calling the method
 	}
 
