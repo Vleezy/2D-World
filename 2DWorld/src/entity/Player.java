@@ -14,7 +14,7 @@ public class Player extends Entity {
 
 	GamePanel gp;
 	KeyHandler keyH;
-	
+
 	// Where we draw player on the screen
 	public final int screenX;
 	public final int screenY;
@@ -24,9 +24,9 @@ public class Player extends Entity {
 
 		this.gp = gp;
 		this.keyH = keyH;
-		
-		screenX = gp.screenWidth/2 - (gp.tileSize/2);
-		screenY = gp.screenHeight/2 - (gp.tileSize/2);
+
+		screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+		screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
 		setDefaultValues();
 		getPlayerImage();
@@ -34,8 +34,8 @@ public class Player extends Entity {
 
 	public void setDefaultValues() {
 
-		worldX = gp.tileSize * 23; //default player initial position (position on map tile)
-		worldY = gp.tileSize * 21; //default player initial position (position on map tile)
+		worldX = gp.tileSize * 23; // default player initial position (position on map tile)
+		worldY = gp.tileSize * 21; // default player initial position (position on map tile)
 		speed = 4;
 		direction = "down"; // any direction is fine
 
