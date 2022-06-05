@@ -32,6 +32,8 @@ public class Player extends Entity {
 		solidArea = new Rectangle(); // collision rectangle area, smaller than character
 		solidArea.x = 8;
 		solidArea.y = 16;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultX = solidArea.y;
 		solidArea.width = 32;
 		solidArea.height = 32;
 
