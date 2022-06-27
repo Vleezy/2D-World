@@ -19,6 +19,7 @@ public class Player extends Entity {
 	// Where we draw player on the screen
 	public final int screenX;
 	public final int screenY;
+	int hasKey = 0; // indicated how many keys a player currently has
 
 	// constructor
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -87,9 +88,10 @@ public class Player extends Entity {
 			// CHECK TILE COLLISION
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
-			 
-			//CHECK OBJECT COLLISION
+
+			// CHECK OBJECT COLLISION
 			int objIndex = gp.cChecker.checkObject(this, true);
+			pickUpObject(objIndex);
 
 			// **If collision is false, player can move
 			if (collisionOn == false) {
@@ -118,6 +120,29 @@ public class Player extends Entity {
 					spriteNum = 1;
 				}
 				spriteCounter = 0;
+			}
+		}
+	}
+
+	public void pickUpObject(int i) {
+
+		if (i != 999) { // If object is not this object number then it has not touched anything(make
+						// sure to not have this number in the object array)
+			String objectName = gp.obj[i].name;
+
+			switch (objectName) {
+			case "Key":
+				hasKey++; // Adds number of objects currently held by player
+				gp.obj[i] = null; // Makes object disappear
+				System.out.println("Key:" + hasKey);
+				break;
+			case "Door":
+				if (hasKey > 0) {
+					gp.obj[i] = null;
+					hasKey--;
+					System.out.println("Key:" + hasKey);
+				}
+				break;
 			}
 		}
 	}
