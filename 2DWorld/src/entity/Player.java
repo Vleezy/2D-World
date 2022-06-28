@@ -109,7 +109,7 @@ public class Player extends Entity {
 				case "right":
 					worldX += speed;
 					break;
-				}
+				} 
 			}
 
 			spriteCounter++;
@@ -132,18 +132,21 @@ public class Player extends Entity {
 
 			switch (objectName) {
 			case "Key":
+				gp.playSE(1); // Plays song in array
 				hasKey++; // Adds number of objects currently held by player
 				gp.obj[i] = null; // Makes object disappear
 				System.out.println("Key:" + hasKey);
 				break;
 			case "Door":
 				if (hasKey > 0) {
+					gp.playSE(3); // Plays song in array
 					gp.obj[i] = null;
 					hasKey--;
 					System.out.println("Key:" + hasKey);
 				}
 				break;
 			case "Boots": 
+				gp.playSE(2); // Plays song in array
 				speed += 1; //Increase player speed
 				gp.obj[i] = null;
 				break;
