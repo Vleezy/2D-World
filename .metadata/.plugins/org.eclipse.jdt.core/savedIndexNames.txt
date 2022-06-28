@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+D:\Coding Environment\2DWorld\.metadata\.plugins\org.eclipse.jdt.core
-3969161435.index
-4043967675.index
