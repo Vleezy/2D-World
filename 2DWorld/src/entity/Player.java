@@ -19,7 +19,7 @@ public class Player extends Entity {
 	// Where we draw player on the screen
 	public final int screenX;
 	public final int screenY;
-	int hasKey = 0; // indicated how many keys a player currently has
+	public int hasKey = 0; // indicated how many keys a player currently has
 
 	// constructor
 	public Player(GamePanel gp, KeyHandler keyH) {
