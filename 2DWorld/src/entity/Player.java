@@ -135,7 +135,7 @@ public class Player extends Entity {
 				gp.playSE(1); // Plays song in array
 				hasKey++; // Adds number of objects currently held by player
 				gp.obj[i] = null; // Makes object disappear
-				System.out.println("Key:" + hasKey);
+				gp.ui.showMessage("You found a key!");
 				break;
 			case "Door":
 				if (hasKey > 0) {
