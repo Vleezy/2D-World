@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Color;
 //import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -206,5 +207,8 @@ public class Player extends Entity {
 		}
 		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); // size of image
 
+		//UNCOMMENT FOR DEVELOPMENT PURPOSES: TO SEE COLLISION BOX ON PLAYER
+//		g2.setColor(Color.red);
+//		g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
 	}
 }
