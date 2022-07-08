@@ -109,7 +109,7 @@ public class Player extends Entity {
 				case "right":
 					worldX += speed;
 					break;
-				} 
+				}
 			}
 
 			spriteCounter++;
@@ -143,12 +143,17 @@ public class Player extends Entity {
 					gp.obj[i] = null;
 					hasKey--;
 					System.out.println("Key:" + hasKey);
+					gp.ui.showMessage("You opened a door!");
+				}
+				else {
+					gp.ui.showMessage("You need a key!");
 				}
 				break;
-			case "Boots": 
+			case "Boots":
 				gp.playSE(2); // Plays song in array
-				speed += 1; //Increase player speed
+				speed += 1; // Increase player speed
 				gp.obj[i] = null;
+				gp.ui.showMessage("You found a speed boost!");
 				break;
 			}
 		}

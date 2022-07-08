@@ -14,6 +14,7 @@ public class UI {
 	BufferedImage keyImage;
 	public boolean messageOn = false;
 	public String message = "";
+	int messageCounter = 0;
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -35,5 +36,19 @@ public class UI {
 		g2.setColor(Color.white);
 		g2.drawImage(keyImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
 		g2.drawString("x " + gp.player.hasKey, 74, 65); // displaying text
+
+		// MESSAGE
+		if (messageOn == true) {
+
+			g2.setFont(g2.getFont().deriveFont(30F)); // Font size
+			g2.drawString(message, gp.tileSize / 2, gp.tileSize * 5);
+
+			messageCounter++;
+
+			if (messageCounter > 120) { // Message will disappear after 120 seconds
+				messageCounter = 0;
+				messageOn = false;
+			}
+		}
 	}
 }
