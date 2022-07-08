@@ -144,8 +144,7 @@ public class Player extends Entity {
 					hasKey--;
 					System.out.println("Key:" + hasKey);
 					gp.ui.showMessage("You opened a door!");
-				}
-				else {
+				} else {
 					gp.ui.showMessage("You need a key!");
 				}
 				break;
@@ -154,6 +153,11 @@ public class Player extends Entity {
 				speed += 1; // Increase player speed
 				gp.obj[i] = null;
 				gp.ui.showMessage("You found a speed boost!");
+				break;
+			case "Chest":
+				gp.ui.gameFinished = true;
+				gp.stopMusic();
+				gp.playSE(4); // 4 (fanfare) - Option in array sound class
 				break;
 			}
 		}
