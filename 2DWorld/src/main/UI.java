@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 
 import object.OBJ_Key;
 
@@ -16,6 +17,9 @@ public class UI {
 	public String message = "";
 	int messageCounter = 0;
 	public boolean gameFinished = false;
+
+	double playTime;
+	DecimalFormat dFormat = new DecimalFormat("#0.00");
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -44,7 +48,7 @@ public class UI {
 			int x;
 			int y;
 
-			// TREADSURE MESSAGE
+			// TREASURE MESSAGE
 			text = "You found the treasure!";
 			textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();// Returns length of text
 
@@ -62,7 +66,7 @@ public class UI {
 			x = gp.screenWidth / 2 - textLength / 2;
 			y = gp.screenHeight / 2 + (gp.tileSize * 2);
 			g2.drawString(text, x, y);
-			
+
 			gp.gameThread = null;
 
 		} else {
@@ -71,6 +75,10 @@ public class UI {
 			g2.setColor(Color.white);
 			g2.drawImage(keyImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
 			g2.drawString("x " + gp.player.hasKey, 74, 65); // displaying text
+
+			// TIME
+			playTime += (double) 1 / 60;
+			g2.drawString("Time:" + dFormat.format(playTime), gp.tileSize * 11, 65);
 
 			// MESSAGE
 			if (messageOn == true) {
