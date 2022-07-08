@@ -56,6 +56,14 @@ public class UI {
 			y = gp.screenHeight / 2 - (gp.tileSize * 3);
 			g2.drawString(text, x, y);
 
+			// TIMER MESSAGE
+			text = "Your time is :" + dFormat.format(playTime) + "!";
+			textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();// Returns length of text
+
+			x = gp.screenWidth / 2 - textLength / 2;
+			y = gp.screenHeight / 2 - (gp.tileSize * 3);
+			g2.drawString(text, x, y);
+
 			// CONGRATULATIONS MESSAGE
 			g2.setFont(arial_80B);
 			g2.setColor(Color.yellow);
