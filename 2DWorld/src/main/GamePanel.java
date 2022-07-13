@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		aSetter.setObject();
 	
-		playMusic(0);
+		playMusic(5); //Theme song playing
 	}
 
 	public void startGamethread() {
