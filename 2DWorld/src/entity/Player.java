@@ -21,6 +21,7 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	public int hasKey = 0; // indicated how many keys a player currently has
+	int standCounter = 0; // default sprite stance
 
 	// constructor
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -122,6 +123,13 @@ public class Player extends Entity {
 				}
 				spriteCounter = 0;
 			}
+		} else {
+			standCounter++;
+			
+			if(standCounter == 20) {
+			spriteNum = 1; //When not pressing any keys sprite defaults to 1
+			standCounter = 0; //resets
+			}
 		}
 	}
 
@@ -207,7 +215,7 @@ public class Player extends Entity {
 		}
 		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); // size of image
 
-		//UNCOMMENT FOR DEVELOPMENT PURPOSES: TO SEE COLLISION BOX ON PLAYER
+		// UNCOMMENT FOR DEVELOPMENT PURPOSES: TO SEE COLLISION BOX ON PLAYER
 //		g2.setColor(Color.red);
 //		g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
 	}
