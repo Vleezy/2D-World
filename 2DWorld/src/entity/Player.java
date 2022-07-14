@@ -22,8 +22,6 @@ public class Player extends Entity {
 	public final int screenY;
 	public int hasKey = 0; // indicated how many keys a player currently has
 	int standCounter = 0; // default sprite stance
-	boolean moving = false;
-	int pixelCounter = 0;
 
 	// constructor
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -35,12 +33,12 @@ public class Player extends Entity {
 		screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
 		solidArea = new Rectangle(); // collision rectangle area, smaller than character
-		solidArea.x = 1;
-		solidArea.y = 1;
+		solidArea.x = 8;
+		solidArea.y = 16;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultX = solidArea.y;
-		solidArea.width = 46;
-		solidArea.height = 46;
+		solidArea.width = 32;
+		solidArea.height = 32;
 
 		setDefaultValues();
 		getPlayerImage();
@@ -75,80 +73,64 @@ public class Player extends Entity {
 
 	public void update() {
 
-		if (moving == false) {
+		if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
+				|| keyH.rightPressed == true) { // Statement to stop player sprite from switching automatically only
+												// switches when a key is pressed
 
-			if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
-					|| keyH.rightPressed == true) { // Statement to stop player sprite from switching automatically only
-													// switches when a key is pressed
+			if (keyH.upPressed == true) {
+				direction = "up";
+			} else if (keyH.downPressed == true) {
+				direction = "down";
+			} else if (keyH.leftPressed == true) {
+				direction = "left";
+			} else if (keyH.rightPressed == true) {
+				direction = "right";
+			}
 
-				if (keyH.upPressed == true) {
-					direction = "up";
-				} else if (keyH.downPressed == true) {
-					direction = "down";
-				} else if (keyH.leftPressed == true) {
-					direction = "left";
-				} else if (keyH.rightPressed == true) {
-					direction = "right";
+			// CHECK TILE COLLISION
+			collisionOn = false;
+			gp.cChecker.checkTile(this);
+
+			// CHECK OBJECT COLLISION
+			int objIndex = gp.cChecker.checkObject(this, true);
+			pickUpObject(objIndex);
+
+			// **If collision is false, player can move
+			if (collisionOn == false) {
+
+				switch (direction) {
+				case "up":
+					worldY -= speed; // short method
+					break;
+				case "down":
+					worldY += speed;
+					break;
+				case "left":
+					worldX -= speed;
+					break;
+				case "right":
+					worldX += speed;
+					break;
 				}
-				
-				moving = true; // When pressing a key movement is set to true
+			}
 
-				// CHECK TILE COLLISION
-				collisionOn = false;
-				gp.cChecker.checkTile(this);
-
-				// CHECK OBJECT COLLISION
-				int objIndex = gp.cChecker.checkObject(this, true);
-				pickUpObject(objIndex);
-			} else {
-				standCounter++;
-
-				if (standCounter == 20) {
-					spriteNum = 1; // When not pressing any keys sprite defaults to 1
-					standCounter = 0; // resets
+			spriteCounter++;
+			if (spriteCounter > 12) { // every 12 frames player image changes
+				if (spriteNum == 1) {
+					spriteNum = 2;
+				} else if (spriteNum == 2) {
+					spriteNum = 1;
 				}
+				spriteCounter = 0;
+			}
+		} else {
+			standCounter++;
+			
+			if(standCounter == 20) {
+			spriteNum = 1; //When not pressing any keys sprite defaults to 1
+			standCounter = 0; //resets
 			}
 		}
-
-		
-	if(moving == true) {
-		
-		// **If collision is false, player can move
-				if (collisionOn == false) {
-
-					switch (direction) {
-					case "up":
-						worldY -= speed; // short method
-						break;
-					case "down":
-						worldY += speed;
-						break;
-					case "left":
-						worldX -= speed;
-						break;
-					case "right":
-						worldX += speed;
-						break;
-					}
-				}
-
-				spriteCounter++;
-				if (spriteCounter > 12) { // every 12 frames player image changes
-					if (spriteNum == 1) {
-						spriteNum = 2;
-					} else if (spriteNum == 2) {
-						spriteNum = 1;
-					}
-					spriteCounter = 0;
-				}
-				
-				pixelCounter += speed;
-				
-				if(pixelCounter == 48) {
-					moving = false;
-					pixelCounter = 0;
-				}
-			}
 	}
 
 	public void pickUpObject(int i) {
